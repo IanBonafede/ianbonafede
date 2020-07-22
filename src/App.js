@@ -1,9 +1,11 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Home from "./Home.js"
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 function App() {
-  return (
+  /*return (
     <div className="App">
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
@@ -20,7 +22,21 @@ function App() {
         </a>
       </header>
     </div>
+  );*/
+  /*return (
+    <Router>
+      <Switch>
+        <Route exact path="/" component={Home}/>
+      </Switch>
+    </Router>
+  );*/
+  return (
+    <h1>Homepage</h1>
   );
+
+
 }
+
+
 
 export default App;
