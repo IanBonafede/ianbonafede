@@ -23,16 +23,16 @@ function App() {
       </header>
     </div>
   );*/
-  /*return (
+  return (
     <Router>
       <Switch>
         <Route exact path="/" component={Home}/>
       </Switch>
     </Router>
-  );*/
-  return (
-    <h1>Homepage</h1>
   );
+  /*return (
+    <h1>Homepage</h1>
+  );*/
 
 
 }
