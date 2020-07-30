@@ -3,14 +3,12 @@ import './App.css';
 import Home from "./Home"
 import Bio from "./Bio"
 import Projects from "./Projects"
-import NavBar from "./NavBar"
 import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 function App() {
   
   return (
     <div>
-      <NavBar></NavBar>
       <Router>
         <Switch>
           <Route path="/ianbonafede/" component={Home}/>
