@@ -11,9 +11,11 @@ function App() {
     <div>
       <Router>
         <Switch>
-          <Route path="/ianbonafede/" component={Home}/>
+
           <Route path="/ianbonafede/bio" component={Bio}/>
           <Route path="/ianbonafede/projects" component={Projects}/>
+          <Route path="/ianbonafede/home" component={Home}/>
+          
         </Switch>
       </Router>
 
