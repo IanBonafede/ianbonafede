@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/ianbonafede/static/css/main.5f361e03.chunk.css",
-    "main.js": "/ianbonafede/static/js/main.4ec93afb.chunk.js",
-    "main.js.map": "/ianbonafede/static/js/main.4ec93afb.chunk.js.map",
+    "main.js": "/ianbonafede/static/js/main.83217d32.chunk.js",
+    "main.js.map": "/ianbonafede/static/js/main.83217d32.chunk.js.map",
     "runtime-main.js": "/ianbonafede/static/js/runtime-main.b803e77a.js",
     "runtime-main.js.map": "/ianbonafede/static/js/runtime-main.b803e77a.js.map",
     "static/css/2.1eaea704.chunk.css": "/ianbonafede/static/css/2.1eaea704.chunk.css",
     "static/js/2.ce446961.chunk.js": "/ianbonafede/static/js/2.ce446961.chunk.js",
     "static/js/2.ce446961.chunk.js.map": "/ianbonafede/static/js/2.ce446961.chunk.js.map",
     "index.html": "/ianbonafede/index.html",
-    "precache-manifest.db286164c241534df4d70e5a4bb3ae1c.js": "/ianbonafede/precache-manifest.db286164c241534df4d70e5a4bb3ae1c.js",
+    "precache-manifest.faf1013b5a80f828393a8f4319bf180e.js": "/ianbonafede/precache-manifest.faf1013b5a80f828393a8f4319bf180e.js",
     "service-worker.js": "/ianbonafede/service-worker.js",
     "static/css/2.1eaea704.chunk.css.map": "/ianbonafede/static/css/2.1eaea704.chunk.css.map",
     "static/css/main.5f361e03.chunk.css.map": "/ianbonafede/static/css/main.5f361e03.chunk.css.map",
@@ -21,6 +21,6 @@
     "static/css/2.1eaea704.chunk.css",
     "static/js/2.ce446961.chunk.js",
     "static/css/main.5f361e03.chunk.css",
-    "static/js/main.4ec93afb.chunk.js"
+    "static/js/main.83217d32.chunk.js"
   ]
 }
