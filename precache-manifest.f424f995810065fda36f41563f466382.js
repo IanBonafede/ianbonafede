@@ -1,27 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "c37eea9c426b0a7b6d51a20d20b8a319",
+    "revision": "91776ea62b335e5f1e7d2800eec43e4b",
     "url": "/ianbonafede/index.html"
   },
   {
-    "revision": "32d42b757481f6fdbba9",
+    "revision": "f03299f21c7db6b0d21b",
     "url": "/ianbonafede/static/css/2.1eaea704.chunk.css"
   },
   {
-    "revision": "a7a38c3b7eb3276ff425",
+    "revision": "7ed65fe0df85e182668d",
     "url": "/ianbonafede/static/css/main.5f361e03.chunk.css"
   },
   {
-    "revision": "32d42b757481f6fdbba9",
-    "url": "/ianbonafede/static/js/2.5880bc63.chunk.js"
+    "revision": "f03299f21c7db6b0d21b",
+    "url": "/ianbonafede/static/js/2.bff0f211.chunk.js"
   },
   {
     "revision": "0749163b59fbee32225059cb60c18af6",
-    "url": "/ianbonafede/static/js/2.5880bc63.chunk.js.LICENSE.txt"
+    "url": "/ianbonafede/static/js/2.bff0f211.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "a7a38c3b7eb3276ff425",
-    "url": "/ianbonafede/static/js/main.8c1285a1.chunk.js"
+    "revision": "7ed65fe0df85e182668d",
+    "url": "/ianbonafede/static/js/main.9a4a5db5.chunk.js"
   },
   {
     "revision": "dcaf627da653e890ffbc",
