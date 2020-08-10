@@ -18,6 +18,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import HomeIcon from '@material-ui/icons/Home';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
+import PaletteIcon from '@material-ui/icons/Palette';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
@@ -145,6 +146,7 @@ function App() {
                 <Button href="/ianbonafede/#/" ><HomeIcon style={{ color: MuiTheme.contrastText }}/></Button>
                 <Button href="/ianbonafede/#/bio"><AccountCircleIcon style={{ color: MuiTheme.contrastText }}/></Button>
                 <Button href="/ianbonafede/#/projects"><LibraryBooksIcon style={{ color: MuiTheme.contrastText }}/></Button>
+                <Button ><PaletteIcon style={{ color: MuiTheme.contrastText }}/></Button>
               </Toolbar>
             </AppBar>
           </div>
