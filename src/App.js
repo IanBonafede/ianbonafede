@@ -1,14 +1,15 @@
 import React from 'react';
 import clsx from 'clsx';
+import SCRIPTBLTTF from "./fonts/SCRIPTBL.TTF"
 import './App.css';
 import Home from "./Home"
 import Bio from "./Bio"
 import Projects from "./Projects"
 import {HashRouter, Route, Switch} from 'react-router-dom'
-import { Container } from '@material-ui/core';
-import 'fontsource-roboto';
+import { Container, CssBaseline } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles'; 
 import AppBar from '@material-ui/core/AppBar';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -22,19 +23,54 @@ import PaletteIcon from '@material-ui/icons/Palette';
 import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-//import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import FacebookIcon from '@material-ui/icons/Facebook';
+
+
+/*import FacebookIcon from '@material-ui/icons/Facebook';
 import InstagramIcon from '@material-ui/icons/Instagram';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import YouTubeIcon from '@material-ui/icons/YouTube';
+import GitHubIcon from '@material-ui/icons/GitHub';*/
+
+import {FaLinkedinIn,
+        FaFacebookF,
+        FaTwitter,
+        FaYoutube,
+        FaInstagram,
+        FaDiscord,
+        FaGithub} from "react-icons/fa"
+
+
+const scriptbl = {
+  fontFamily: 'Scriptbl',
+  fontStyle: 'normal',
+  fontDisplay: 'swap',
+  fontWeight: 400,
+  src: `
+    local('Scriptbl'),
+    local('Scriptbl-Regular'),
+    url(${SCRIPTBLTTF}) format('TTF')
+  `,
+  unicodeRange:
+    'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
+};
 
 const MuiTheme = createMuiTheme({
     light: '#A3A3A3',
     main: '#828282',
     dark: '#686868',
-    contrastText: '#fff'
+    contrastText: '#fff',
+    typography: {
+      fontFamily: 'Scriptbl, Arial',
+    },
+    overrides: {
+      MuiCssBaseline: {
+        '@global': {
+          '@font-face': [scriptbl],
+        },
+      },
+    },
 });
 
 const useStyles = makeStyles((theme) => ({
@@ -96,25 +132,32 @@ function App() {
            </ListItem>
             <Divider></Divider>
             <ListItem button component="a" href="https://www.linkedin.com/in/ian-bonafede/">
-              <ListItemText primary="LinkedIn" style={{ color: MuiTheme.contrastText }}/>
+              <ListItemText primary="LinkedIn" style={{ color: MuiTheme.contrastText }} className={classes.title}/>
+              <FaLinkedinIn style={{ color: MuiTheme.contrastText }}/>
             </ListItem>
             <ListItem button component="a" href="https://www.facebook.com/ian.bonafede">
-              <ListItemText primary="Facebook" style={{ color: MuiTheme.contrastText }}/>
+              <ListItemText primary="Facebook" style={{ color: MuiTheme.contrastText }} />
+              <FaFacebookF style={{ color: MuiTheme.contrastText }}/>
             </ListItem>
             <ListItem button component="a" href="https://twitter.com/bonafede_ian">
               <ListItemText primary="Twitter" style={{ color: MuiTheme.contrastText }}/>
+              <FaTwitter style={{ color: MuiTheme.contrastText }}/>
             </ListItem>
             <ListItem button component="a" href="https://www.youtube.com/channel/UCKibLpiwfT9Ju9PC0d9pQog?view_as=subscriber">
               <ListItemText primary="Youtube" style={{ color: MuiTheme.contrastText }}/>
+              <FaYoutube style={{ color: MuiTheme.contrastText }}/>
             </ListItem>
             <ListItem button component="a" href="https://www.instagram.com/ianbonafede/">
               <ListItemText primary="Instagram" style={{ color: MuiTheme.contrastText }}/>
+              <FaInstagram style={{ color: MuiTheme.contrastText }}/>
             </ListItem>
             <ListItem button component="a" href="https://discord.gg/H4XhXqw">
               <ListItemText primary="Discord" style={{ color: MuiTheme.contrastText }}/>
+              <FaDiscord style={{ color: MuiTheme.contrastText }}/>
             </ListItem>
             <ListItem button component="a" href="https://github.com/IanBonafede">
               <ListItemText primary="GitHub" style={{ color: MuiTheme.contrastText }}/>
+              <FaGithub style={{ color: MuiTheme.contrastText }}/>
             </ListItem>
         </List>
       </div>
@@ -139,10 +182,11 @@ function App() {
                   </SwipeableDrawer>
                 </React.Fragment>
               ))}
-                
-                <Typography variant="h6" className={classes.title}>
-                  IB
-                </Typography>
+
+                <ThemeProvider theme={MuiTheme}>
+                  <CssBaseline />
+                  <Typography variant="h6" className={classes.title}>IB</Typography>
+                </ThemeProvider>
                 <Button href="/ianbonafede/#/" ><HomeIcon style={{ color: MuiTheme.contrastText }}/></Button>
                 <Button href="/ianbonafede/#/bio"><AccountCircleIcon style={{ color: MuiTheme.contrastText }}/></Button>
                 <Button href="/ianbonafede/#/projects"><LibraryBooksIcon style={{ color: MuiTheme.contrastText }}/></Button>
