@@ -124,7 +124,7 @@ function App() {
       <>
           <div className={classes.root}>
             <AppBar position="static" style={{ background: MuiTheme.main, padding: 0 }}>
-              <Toolbar >
+              <Toolbar variant="dense">
               {['left'].map((anchor) => (
                 <React.Fragment key={anchor}>
                   <Button onClick={toggleDrawer(anchor, true)}><MenuIcon style={{ color: MuiTheme.contrastText }}/></Button>
@@ -141,7 +141,7 @@ function App() {
               ))}
                 
                 <Typography variant="h6" className={classes.title}>
-                  Ian Bonafede
+                  IB
                 </Typography>
                 <Button href="/ianbonafede/#/" ><HomeIcon style={{ color: MuiTheme.contrastText }}/></Button>
                 <Button href="/ianbonafede/#/bio"><AccountCircleIcon style={{ color: MuiTheme.contrastText }}/></Button>
