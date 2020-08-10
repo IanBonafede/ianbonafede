@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/ianbonafede/static/css/main.5f361e03.chunk.css",
-    "main.js": "/ianbonafede/static/js/main.f64e9aea.chunk.js",
-    "main.js.map": "/ianbonafede/static/js/main.f64e9aea.chunk.js.map",
+    "main.js": "/ianbonafede/static/js/main.ea998488.chunk.js",
+    "main.js.map": "/ianbonafede/static/js/main.ea998488.chunk.js.map",
     "runtime-main.js": "/ianbonafede/static/js/runtime-main.b803e77a.js",
     "runtime-main.js.map": "/ianbonafede/static/js/runtime-main.b803e77a.js.map",
     "static/js/2.a59648de.chunk.js": "/ianbonafede/static/js/2.a59648de.chunk.js",
     "static/js/2.a59648de.chunk.js.map": "/ianbonafede/static/js/2.a59648de.chunk.js.map",
     "index.html": "/ianbonafede/index.html",
-    "precache-manifest.e73e2775ab1117b8a4354e97cf965c48.js": "/ianbonafede/precache-manifest.e73e2775ab1117b8a4354e97cf965c48.js",
+    "precache-manifest.c8824b940ee22e0519712c1bd88fa86e.js": "/ianbonafede/precache-manifest.c8824b940ee22e0519712c1bd88fa86e.js",
     "service-worker.js": "/ianbonafede/service-worker.js",
     "static/css/main.5f361e03.chunk.css.map": "/ianbonafede/static/css/main.5f361e03.chunk.css.map",
     "static/js/2.a59648de.chunk.js.LICENSE.txt": "/ianbonafede/static/js/2.a59648de.chunk.js.LICENSE.txt"
@@ -17,6 +17,6 @@
     "static/js/runtime-main.b803e77a.js",
     "static/js/2.a59648de.chunk.js",
     "static/css/main.5f361e03.chunk.css",
-    "static/js/main.f64e9aea.chunk.js"
+    "static/js/main.ea998488.chunk.js"
   ]
 }
