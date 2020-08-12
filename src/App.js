@@ -1,6 +1,5 @@
 import React from 'react';
 import clsx from 'clsx';
-import SCRIPTBLTTF from "./fonts/SCRIPTBL.TTF"
 import './App.css';
 import Home from "./Home"
 import Bio from "./Bio"
@@ -26,7 +25,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 
 
-
 import {FaLinkedinIn,
         FaFacebookF,
         FaTwitter,
@@ -36,46 +34,24 @@ import {FaLinkedinIn,
         FaGithub} from "react-icons/fa"
 
 
-const scriptbl = {
-  fontFamily: 'Scriptbl',
-  fontStyle: 'normal',
-  fontDisplay: 'swap',
-  fontWeight: 400,
-  src: `
-    local('Scriptbl'),
-    local('Scriptbl-Regular'),
-    url(${SCRIPTBLTTF}) format('TTF')
-  `,
-  unicodeRange:
-    'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF',
-};
 
 const MuiTheme = createMuiTheme({
     light: '#A3A3A3',
     main: '#828282',
     dark: '#686868',
     contrastText: '#fff',
-    typography: {
-      fontFamily: 'Scriptbl, Arial',
-    },
-    overrides: {
-      MuiCssBaseline: {
-        '@global': {
-          '@font-face': [scriptbl],
-        },
-      },
-    },
+    
 });
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
   title: {
     flexGrow: 1,
+  },
+  toolbarButton: {
+    height: 50
   },
   list: {
     width: 200,
@@ -84,7 +60,7 @@ const useStyles = makeStyles((theme) => ({
     width: 'auto',
   },
   paper: {
-    background: "#828282"
+    background: MuiTheme.main
   }
 }));
 
@@ -160,11 +136,11 @@ function App() {
   return (
       <>
           <div className={classes.root}>
-            <AppBar position="static" style={{ background: MuiTheme.main, padding: 0 }}>
+            <AppBar position="static" style={{ background: MuiTheme.main, margin: 0, padding: 0}}>
               <Toolbar variant="dense">
               {['left'].map((anchor) => (
                 <React.Fragment key={anchor}>
-                  <Button onClick={toggleDrawer(anchor, true)}><MenuIcon style={{ color: MuiTheme.contrastText }}/></Button>
+                  <Button onClick={toggleDrawer(anchor, true)} edge="start" className={classes.toolbarButton}><MenuIcon style={{ color: MuiTheme.contrastText }}/></Button>
                   <SwipeableDrawer
                     classes={{ paper: classes.paper }}
                     anchor={anchor}
@@ -177,14 +153,13 @@ function App() {
                 </React.Fragment>
               ))}
 
-                <ThemeProvider theme={MuiTheme}>
-                  <CssBaseline />
-                  <Typography variant="h6" className={classes.title}>IB</Typography>
-                </ThemeProvider>
-                <Button href="/ianbonafede/#/" ><HomeIcon style={{ color: MuiTheme.contrastText }}/></Button>
-                <Button href="/ianbonafede/#/bio"><AccountCircleIcon style={{ color: MuiTheme.contrastText }}/></Button>
-                <Button href="/ianbonafede/#/projects"><LibraryBooksIcon style={{ color: MuiTheme.contrastText }}/></Button>
-                <Button ><PaletteIcon style={{ color: MuiTheme.contrastText }}/></Button>
+                
+                
+                <Button href="/ianbonafede/#/" className={classes.toolbarButton} style={{fontFamily: 'Merienda One', color: MuiTheme.contrastText, margin: 0}}>Ian Bonafede</Button>
+                <Typography className={classes.title}></Typography>
+                <Button href="/ianbonafede/#/bio" className={classes.toolbarButton}><AccountCircleIcon style={{ color: MuiTheme.contrastText }}/></Button>
+                <Button href="/ianbonafede/#/projects" className={classes.toolbarButton}><LibraryBooksIcon style={{ color: MuiTheme.contrastText }}/></Button>
+                <Button className={classes.toolbarButton} edge="end"><PaletteIcon style={{ color: MuiTheme.contrastText }}/></Button>
               </Toolbar>
             </AppBar>
           </div>
