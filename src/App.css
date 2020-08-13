@@ -37,7 +37,12 @@
   }
 }
 
-.leftList {
+.leftDrawerDiv {
   height: 100%;
   width: 200px;
+}
+
+.rightDrawerDiv {
+  height: 100%;
+  width: auto;
 }

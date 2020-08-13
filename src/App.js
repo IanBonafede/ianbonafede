@@ -1,21 +1,17 @@
 import React from 'react';
-import clsx from 'clsx';
+import { ChromePicker, SliderPicker, CompactPicker } from 'react-color';
 import './App.css';
 import Home from "./Home"
 import Bio from "./Bio"
 import Projects from "./Projects"
 import {HashRouter, Route, Switch} from 'react-router-dom'
-import { Container, CssBaseline } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles'; 
+import { Container} from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import MenuIcon from '@material-ui/icons/Menu';
-import HomeIcon from '@material-ui/icons/Home';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import LibraryBooksIcon from '@material-ui/icons/LibraryBooks';
 import PaletteIcon from '@material-ui/icons/Palette';
@@ -23,7 +19,6 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import Box from '@material-ui/core/Box';
 
 
 import {FaLinkedinIn,
@@ -44,16 +39,10 @@ class App extends React.Component {
     this.state = {
         pallete : {
           primary : {
-            light: '#A3A3A3',
-            main: '#828282',
-            dark: '#686868',
-            contrastText: '#fff'
-          },
-          secondary : {
-            light: '#A3A3A3',
-            main: '#828282',
-            dark: '#686868',
-            contrastText: '#fff'
+            light: '#CCCCCC',
+            main: '#808080',
+            dark: '#666666',
+            contrastText: '#ffffff'
           }
         },
         drawers : {
@@ -62,8 +51,65 @@ class App extends React.Component {
         }
     }
     this.toggleLeftDrawer = this.toggleLeftDrawer.bind(this);
+    this.toggleRightDrawer = this.toggleRightDrawer.bind(this);
+
+    this.handleLightColorChange = this.handleLightColorChange.bind(this);
+    this.handleMainColorChange = this.handleMainColorChange.bind(this);
+    this.handleDarkColorChange = this.handleDarkColorChange.bind(this);
+    this.handleTextColorChange = this.handleTextColorChange.bind(this)
   }
-    
+  
+  handleLightColorChange = (color) => {
+    this.setState({
+      pallete: {
+        primary : {
+          light: color.hex,
+          main: this.state.pallete.primary.main,
+          dark: this.state.pallete.primary.dark,
+          contrastText: this.state.pallete.primary.contrastText
+        }
+      }
+    });
+  }
+
+  handleMainColorChange = (color) => {
+    this.setState({
+      pallete: {
+        primary : {
+          light: this.state.pallete.primary.light,
+          main: color.hex,
+          dark: this.state.pallete.primary.dark,
+          contrastText: this.state.pallete.primary.contrastText
+        }
+      }
+    });
+  }
+
+  handleDarkColorChange = (color) => {
+    this.setState({
+      pallete: {
+        primary : {
+          light: this.state.pallete.primary.light,
+          main: this.state.pallete.primary.main,
+          dark: color.hex,
+          contrastText: this.state.pallete.primary.contrastText
+        }
+      }
+    });
+  }
+
+  handleTextColorChange = (color) => {
+    this.setState({
+      pallete: {
+        primary : {
+          light: this.state.pallete.primary.light,
+          main: this.state.pallete.primary.main,
+          dark: this.state.pallete.primary.dark,
+          contrastText: color.hex
+        }
+      }
+    });
+  }
     
   toggleLeftDrawer = (open) => (event) => {
     if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -73,6 +119,18 @@ class App extends React.Component {
     this.setState({
       drawers: {
         left: open
+      }
+    });
+  };
+
+  toggleRightDrawer = (open) => (event) => {
+    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    this.setState({
+      drawers: {
+        right: open
       }
     });
   };
@@ -87,7 +145,7 @@ class App extends React.Component {
 
       const leftList = () => (
         <div
-          className="leftList"
+          className="leftDrawerDiv"
           style={{background: this.state.pallete.primary.main}}
           role="presentation"
           onClick={this.toggleLeftDrawer(false)}
@@ -130,7 +188,49 @@ class App extends React.Component {
         </div>
       );
 
-      
+      const rightList = () => (
+        <div
+          className="rightDrawerDiv"
+          style={{background: this.state.pallete.primary.main}}
+          role="presentation"
+          onClick={this.toggleRightDrawer(false)}
+          onKeyDown={this.toggleRightDrawer(false)}
+        >
+          <List >
+              <ListItem >
+                <ListItemText primary="Colors" style={{ color: this.state.pallete.primary.contrastText }}/>
+             </ListItem>
+              <Divider></Divider>
+              <ListItem >
+                  <ListItemText primary="Light" style={{ color: this.state.pallete.primary.contrastText }} />
+              </ListItem>
+              <ListItem >
+                 <CompactPicker onChange={this.handleLightColorChange} color={this.state.pallete.primary.light}/>
+              </ListItem>
+              <Divider></Divider>
+              <ListItem >
+                  <ListItemText primary="Main" style={{ color: this.state.pallete.primary.contrastText }} />
+              </ListItem>
+              <ListItem >
+                 <CompactPicker onChange={this.handleMainColorChange} color={this.state.pallete.primary.main}/>
+              </ListItem>
+              <Divider></Divider>
+              <ListItem >
+                  <ListItemText primary="Dark" style={{ color: this.state.pallete.primary.contrastText }} />
+              </ListItem>
+              <ListItem >
+                 <CompactPicker onChange={this.handleDarkColorChange} color={this.state.pallete.primary.dark}/>
+              </ListItem>
+              <Divider></Divider>
+              <ListItem >
+                  <ListItemText primary="Text/Icons" style={{ color: this.state.pallete.primary.contrastText }} />
+              </ListItem>
+              <ListItem >
+                 <CompactPicker onChange={this.handleTextColorChange} color={this.state.pallete.primary.contrastText}/>
+              </ListItem>
+          </List>
+        </div>
+      );
 
       return (
         <>
@@ -154,7 +254,16 @@ class App extends React.Component {
                 <Typography style={{flexGrow: 1}}></Typography>
                 <Button href="/ianbonafede/#/bio" style={{height: 50}}><AccountCircleIcon style={{ color: this.state.pallete.primary.contrastText }}/></Button>
                 <Button href="/ianbonafede/#/projects" style={{height: 50}}><LibraryBooksIcon style={{ color: this.state.pallete.primary.contrastText }}/></Button>
-                <Button style={{height: 50}} edge="end"><PaletteIcon style={{ color: this.state.pallete.primary.contrastText }}/></Button>
+                <Button onClick={this.toggleRightDrawer(true)} style={{height: 50}} edge="end"><PaletteIcon style={{ color: this.state.pallete.primary.contrastText }}/></Button>
+                <SwipeableDrawer
+                      
+                      anchor="right"
+                      open={this.state.drawers.right}
+                      onClose={this.toggleRightDrawer(false)}
+                      onOpen={this.toggleRightDrawer(true)}
+                    >
+                      {rightList()}
+                    </SwipeableDrawer>
               </Toolbar>
             </AppBar>
           </div>
