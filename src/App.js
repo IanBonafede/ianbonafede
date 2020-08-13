@@ -23,6 +23,7 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Box from '@material-ui/core/Box';
 
 
 import {FaLinkedinIn,
@@ -34,6 +35,153 @@ import {FaLinkedinIn,
         FaGithub} from "react-icons/fa"
 
 
+
+
+
+class App extends React.Component {
+  constructor() {
+    super()
+    this.state = {
+        pallete : {
+          primary : {
+            light: '#A3A3A3',
+            main: '#828282',
+            dark: '#686868',
+            contrastText: '#fff'
+          },
+          secondary : {
+            light: '#A3A3A3',
+            main: '#828282',
+            dark: '#686868',
+            contrastText: '#fff'
+          }
+        },
+        drawers : {
+          left : false,
+          right : false
+        }
+    }
+    this.toggleLeftDrawer = this.toggleLeftDrawer.bind(this);
+  }
+    
+    
+  toggleLeftDrawer = (open) => (event) => {
+    if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+    this.setState({
+      drawers: {
+        left: open
+      }
+    });
+  };
+
+
+  
+    render() {
+
+      document.body.style.background = this.state.pallete.primary.dark;
+
+      
+
+      const leftList = () => (
+        <div
+          className="leftList"
+          style={{background: this.state.pallete.primary.main}}
+          role="presentation"
+          onClick={this.toggleLeftDrawer(false)}
+          onKeyDown={this.toggleLeftDrawer(false)}
+        >
+          <List >
+              <ListItem >
+                <ListItemText primary="Quick Links" style={{ color: this.state.pallete.primary.contrastText }}/>
+             </ListItem>
+              <Divider></Divider>
+              <ListItem button component="a" href="https://www.linkedin.com/in/ian-bonafede/" >
+                <ListItemText primary="LinkedIn" style={{ color: this.state.pallete.primary.contrastText }} />
+                <FaLinkedinIn style={{ color: this.state.pallete.primary.contrastText }}/>
+              </ListItem>
+              <ListItem button component="a" href="https://www.facebook.com/ian.bonafede">
+                <ListItemText primary="Facebook" style={{ color: this.state.pallete.primary.contrastText }} />
+                <FaFacebookF style={{ color: this.state.pallete.primary.contrastText }}/>
+              </ListItem>
+              <ListItem button component="a" href="https://twitter.com/bonafede_ian">
+                <ListItemText primary="Twitter" style={{ color: this.state.pallete.primary.contrastText }}/>
+                <FaTwitter style={{ color: this.state.pallete.primary.contrastText }}/>
+              </ListItem>
+              <ListItem button component="a" href="https://www.youtube.com/channel/UCKibLpiwfT9Ju9PC0d9pQog?view_as=subscriber">
+                <ListItemText primary="Youtube" style={{ color: this.state.pallete.primary.contrastText }}/>
+                <FaYoutube style={{ color: this.state.pallete.primary.contrastText }}/>
+              </ListItem>
+              <ListItem button component="a" href="https://www.instagram.com/ianbonafede/">
+                <ListItemText primary="Instagram" style={{ color: this.state.pallete.primary.contrastText }}/>
+                <FaInstagram style={{ color: this.state.pallete.primary.contrastText }}/>
+              </ListItem>
+              <ListItem button component="a" href="https://discord.gg/H4XhXqw">
+                <ListItemText primary="Discord" style={{ color: this.state.pallete.primary.contrastText }}/>
+                <FaDiscord style={{ color: this.state.pallete.primary.contrastText }}/>
+              </ListItem>
+              <ListItem button component="a" href="https://github.com/IanBonafede">
+                <ListItemText primary="GitHub" style={{ color: this.state.pallete.primary.contrastText }}/>
+                <FaGithub style={{ color: this.state.pallete.primary.contrastText }}/>
+              </ListItem>
+          </List>
+        </div>
+      );
+
+      
+
+      return (
+        <>
+          <div style={{flexGrow: 1}}>
+            <AppBar position="static" style={{ background: this.state.pallete.primary.main}}>
+              <Toolbar variant="dense">
+
+                
+                    <Button onClick={this.toggleLeftDrawer(true)} edge="start" style={{height: 50}}><MenuIcon style={{ color: this.state.pallete.primary.contrastText }}/></Button>
+                    <SwipeableDrawer
+                      
+                      anchor="left"
+                      open={this.state.drawers.left}
+                      onClose={this.toggleLeftDrawer(false)}
+                      onOpen={this.toggleLeftDrawer(true)}
+                    >
+                      {leftList()}
+                    </SwipeableDrawer>
+
+                <Button href="/ianbonafede/#/" style={{height: 50, fontFamily: 'Merienda One', color: this.state.pallete.primary.contrastText, margin: 0}}>Ian Bonafede</Button>
+                <Typography style={{flexGrow: 1}}></Typography>
+                <Button href="/ianbonafede/#/bio" style={{height: 50}}><AccountCircleIcon style={{ color: this.state.pallete.primary.contrastText }}/></Button>
+                <Button href="/ianbonafede/#/projects" style={{height: 50}}><LibraryBooksIcon style={{ color: this.state.pallete.primary.contrastText }}/></Button>
+                <Button style={{height: 50}} edge="end"><PaletteIcon style={{ color: this.state.pallete.primary.contrastText }}/></Button>
+              </Toolbar>
+            </AppBar>
+          </div>
+          <Container style={{backgroundColor: this.state.pallete.primary.main}} maxWidth="lg">
+              <HashRouter basename={`${process.env.PUBLIC_URL}`} >
+                <Switch>
+                
+                  <Route exact path="/" component={Home}/>
+                  <Route exact path="/bio" component={Bio}/>
+                  <Route exact path="/Projects" component={Projects}/>
+                  
+                </Switch>
+              </HashRouter>
+          </Container>
+        </>
+      );
+      
+      
+    
+    
+    }
+}
+
+
+export default App;
+
+/***********************************this is the code that renders app
 
 const MuiTheme = createMuiTheme({
     light: '#A3A3A3',
@@ -186,4 +334,4 @@ function App() {
 
 
 
-export default App;
+export default App;*/
