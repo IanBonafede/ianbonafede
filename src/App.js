@@ -1,11 +1,12 @@
 import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import { ChromePicker, SliderPicker, CompactPicker } from 'react-color';
+import FontPicker from "font-picker-react";
 import './App.css';
 import Home from "./Home"
 import Bio from "./Bio"
 import Projects from "./Projects"
 import {HashRouter, Route, Switch} from 'react-router-dom'
-import { Container} from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -32,18 +33,21 @@ import {FaLinkedinIn,
 
 
 
-
 class App extends React.Component {
-  constructor() {
-    super()
+  constructor(props) {
+    super(props)
     this.state = {
         pallete : {
-          primary : {
-            light: '#CCCCCC',
-            main: '#808080',
-            dark: '#666666',
-            contrastText: '#ffffff'
-          }
+          light: '#CCCCCC',
+          main: '#808080',
+          dark: '#666666',
+          contrastText: '#ffffff'
+        },
+        fonts: {
+          logo: "Merienda One",
+          title: "Merienda One",
+          section: "Merienda One",
+          paragraph: "Merienda One"
         },
         drawers : {
           left : false,
@@ -56,18 +60,21 @@ class App extends React.Component {
     this.handleLightColorChange = this.handleLightColorChange.bind(this);
     this.handleMainColorChange = this.handleMainColorChange.bind(this);
     this.handleDarkColorChange = this.handleDarkColorChange.bind(this);
-    this.handleTextColorChange = this.handleTextColorChange.bind(this)
+    this.handleTextColorChange = this.handleTextColorChange.bind(this);
+
+    this.handleLogoFontChange = this.handleLogoFontChange.bind(this);
+    this.handleTitleFontChange = this.handleTitleFontChange.bind(this);
+    this.handleSectionFontChange = this.handleSectionFontChange.bind(this);
+    this.handleParagraphFontChange = this.handleParagraphFontChange.bind(this);
   }
   
   handleLightColorChange = (color) => {
     this.setState({
       pallete: {
-        primary : {
-          light: color.hex,
-          main: this.state.pallete.primary.main,
-          dark: this.state.pallete.primary.dark,
-          contrastText: this.state.pallete.primary.contrastText
-        }
+        light: color.hex,
+        main: this.state.pallete.main,
+        dark: this.state.pallete.dark,
+        contrastText: this.state.pallete.contrastText
       }
     });
   }
@@ -75,12 +82,10 @@ class App extends React.Component {
   handleMainColorChange = (color) => {
     this.setState({
       pallete: {
-        primary : {
-          light: this.state.pallete.primary.light,
-          main: color.hex,
-          dark: this.state.pallete.primary.dark,
-          contrastText: this.state.pallete.primary.contrastText
-        }
+        light: this.state.pallete.light,
+        main: color.hex,
+        dark: this.state.pallete.dark,
+        contrastText: this.state.pallete.contrastText
       }
     });
   }
@@ -88,12 +93,10 @@ class App extends React.Component {
   handleDarkColorChange = (color) => {
     this.setState({
       pallete: {
-        primary : {
-          light: this.state.pallete.primary.light,
-          main: this.state.pallete.primary.main,
-          dark: color.hex,
-          contrastText: this.state.pallete.primary.contrastText
-        }
+        light: this.state.pallete.light,
+        main: this.state.pallete.main,
+        dark: color.hex,
+        contrastText: this.state.pallete.contrastText
       }
     });
   }
@@ -101,12 +104,56 @@ class App extends React.Component {
   handleTextColorChange = (color) => {
     this.setState({
       pallete: {
-        primary : {
-          light: this.state.pallete.primary.light,
-          main: this.state.pallete.primary.main,
-          dark: this.state.pallete.primary.dark,
-          contrastText: color.hex
-        }
+        light: this.state.pallete.light,
+        main: this.state.pallete.main,
+        dark: this.state.pallete.dark,
+        contrastText: color.hex
+      }
+    });
+
+    
+  }
+
+  handleLogoFontChange = (nextFont) => {
+    this.setState({
+      fonts: {
+        logo: nextFont.family,
+        title: this.state.fonts.title,
+        section: this.state.fonts.section,
+        paragraph: this.state.fonts.paragraph
+      }
+    });
+  }
+
+  handleTitleFontChange = (nextFont) => {
+    this.setState({
+      fonts: {
+        logo: this.state.fonts.logo,
+        title: nextFont.family,
+        section: this.state.fonts.section,
+        paragraph: this.state.fonts.paragraph
+      }
+    });
+  }
+
+  handleSectionFontChange = (nextFont) => {
+    this.setState({
+      fonts: {
+        logo: this.state.fonts.logo,
+        title: this.state.fonts.title,
+        section: nextFont.family,
+        paragraph: this.state.fonts.paragraph
+      }
+    });
+  }
+
+  handleParagraphFontChange = (nextFont) => {
+    this.setState({
+      fonts: {
+        logo: this.state.fonts.logo,
+        title: this.state.fonts.title,
+        section: this.state.fonts.section,
+        paragraph: nextFont.family
       }
     });
   }
@@ -139,50 +186,57 @@ class App extends React.Component {
   
     render() {
 
-      document.body.style.background = this.state.pallete.primary.dark;
+      document.body.style.background = this.state.pallete.dark;
 
-      
+      const families = [
+        "Merienda One", "Charmonman", "Condiment", "Tangerine", "Euphoria Script", "Srisakdi", "Pirata One",
+        "Mogra", "Modak", "Stylish", "Gabriela", "Marmelad", "DM Mono", "Calligraffitti", "Averia Serif Libre",
+        "Asul", "Amita", "Milonga", "IM Fell English SC", "Germania One", "Stardos Stencil", "Shojumaru", "Almendra",
+        "Oxanium", "Iceland", "Metamorphous", "Nova Mono", "Nova Round", "Sedgwick Ave Display", "Sarina", "Yatra One",
+        "Marko One", "Iceberg", "Junge", "UnifrakturCook", "Uncial Antiqua", "Eagle Lake", "Linden Hill", "Kotta One",
+        "Open Sans" , "Roboto", "Ubuntu", "Roboto Slab", "PT Serif"
+      ]
+        
 
       const leftList = () => (
         <div
           className="leftDrawerDiv"
-          style={{background: this.state.pallete.primary.main}}
+          style={{background: this.state.pallete.main}}
           role="presentation"
-          onClick={this.toggleLeftDrawer(false)}
           onKeyDown={this.toggleLeftDrawer(false)}
         >
-          <List >
+          <List style={{background: this.state.pallete.main}}>
               <ListItem >
-                <ListItemText primary="Quick Links" style={{ color: this.state.pallete.primary.contrastText }}/>
+                <ListItemText primary="Quick Links" style={{ color: this.state.pallete.contrastText }}/>
              </ListItem>
               <Divider></Divider>
               <ListItem button component="a" href="https://www.linkedin.com/in/ian-bonafede/" >
-                <ListItemText primary="LinkedIn" style={{ color: this.state.pallete.primary.contrastText }} />
-                <FaLinkedinIn style={{ color: this.state.pallete.primary.contrastText }}/>
+                <ListItemText primary="LinkedIn" style={{ color: this.state.pallete.contrastText }} />
+                <FaLinkedinIn style={{ color: this.state.pallete.contrastText }}/>
               </ListItem>
               <ListItem button component="a" href="https://www.facebook.com/ian.bonafede">
-                <ListItemText primary="Facebook" style={{ color: this.state.pallete.primary.contrastText }} />
-                <FaFacebookF style={{ color: this.state.pallete.primary.contrastText }}/>
+                <ListItemText primary="Facebook" style={{ color: this.state.pallete.contrastText }} />
+                <FaFacebookF style={{ color: this.state.pallete.contrastText }}/>
               </ListItem>
               <ListItem button component="a" href="https://twitter.com/bonafede_ian">
-                <ListItemText primary="Twitter" style={{ color: this.state.pallete.primary.contrastText }}/>
-                <FaTwitter style={{ color: this.state.pallete.primary.contrastText }}/>
+                <ListItemText primary="Twitter" style={{ color: this.state.pallete.contrastText }}/>
+                <FaTwitter style={{ color: this.state.pallete.contrastText }}/>
               </ListItem>
               <ListItem button component="a" href="https://www.youtube.com/channel/UCKibLpiwfT9Ju9PC0d9pQog?view_as=subscriber">
-                <ListItemText primary="Youtube" style={{ color: this.state.pallete.primary.contrastText }}/>
-                <FaYoutube style={{ color: this.state.pallete.primary.contrastText }}/>
+                <ListItemText primary="Youtube" style={{ color: this.state.pallete.contrastText }}/>
+                <FaYoutube style={{ color: this.state.pallete.contrastText }}/>
               </ListItem>
               <ListItem button component="a" href="https://www.instagram.com/ianbonafede/">
-                <ListItemText primary="Instagram" style={{ color: this.state.pallete.primary.contrastText }}/>
-                <FaInstagram style={{ color: this.state.pallete.primary.contrastText }}/>
+                <ListItemText primary="Instagram" style={{ color: this.state.pallete.contrastText }}/>
+                <FaInstagram style={{ color: this.state.pallete.contrastText }}/>
               </ListItem>
               <ListItem button component="a" href="https://discord.gg/H4XhXqw">
-                <ListItemText primary="Discord" style={{ color: this.state.pallete.primary.contrastText }}/>
-                <FaDiscord style={{ color: this.state.pallete.primary.contrastText }}/>
+                <ListItemText primary="Discord" style={{ color: this.state.pallete.contrastText }}/>
+                <FaDiscord style={{ color: this.state.pallete.contrastText }}/>
               </ListItem>
               <ListItem button component="a" href="https://github.com/IanBonafede">
-                <ListItemText primary="GitHub" style={{ color: this.state.pallete.primary.contrastText }}/>
-                <FaGithub style={{ color: this.state.pallete.primary.contrastText }}/>
+                <ListItemText primary="GitHub" style={{ color: this.state.pallete.contrastText }}/>
+                <FaGithub style={{ color: this.state.pallete.contrastText }}/>
               </ListItem>
           </List>
         </div>
@@ -191,42 +245,89 @@ class App extends React.Component {
       const rightList = () => (
         <div
           className="rightDrawerDiv"
-          style={{background: this.state.pallete.primary.main}}
+          style={{background: this.state.pallete.main}}
           role="presentation"
-          onClick={this.toggleRightDrawer(false)}
           onKeyDown={this.toggleRightDrawer(false)}
         >
-          <List >
+          <List style={{background: this.state.pallete.main}}>
               <ListItem >
-                <ListItemText primary="Colors" style={{ color: this.state.pallete.primary.contrastText }}/>
+                <ListItemText primary="Colors" style={{ color: this.state.pallete.contrastText }}/>
              </ListItem>
               <Divider></Divider>
               <ListItem >
-                  <ListItemText primary="Light" style={{ color: this.state.pallete.primary.contrastText }} />
+                  <ListItemText primary="Light" style={{ color: this.state.pallete.contrastText }} />
               </ListItem>
               <ListItem >
-                 <CompactPicker onChange={this.handleLightColorChange} color={this.state.pallete.primary.light}/>
-              </ListItem>
-              <Divider></Divider>
-              <ListItem >
-                  <ListItemText primary="Main" style={{ color: this.state.pallete.primary.contrastText }} />
-              </ListItem>
-              <ListItem >
-                 <CompactPicker onChange={this.handleMainColorChange} color={this.state.pallete.primary.main}/>
+                 <ChromePicker onChange={this.handleLightColorChange} color={this.state.pallete.light}/>
               </ListItem>
               <Divider></Divider>
               <ListItem >
-                  <ListItemText primary="Dark" style={{ color: this.state.pallete.primary.contrastText }} />
+                  <ListItemText primary="Main" style={{ color: this.state.pallete.contrastText }} />
               </ListItem>
               <ListItem >
-                 <CompactPicker onChange={this.handleDarkColorChange} color={this.state.pallete.primary.dark}/>
+                 <ChromePicker onChange={this.handleMainColorChange} color={this.state.pallete.main}/>
               </ListItem>
               <Divider></Divider>
               <ListItem >
-                  <ListItemText primary="Text/Icons" style={{ color: this.state.pallete.primary.contrastText }} />
+                  <ListItemText primary="Dark" style={{ color: this.state.pallete.contrastText }} />
               </ListItem>
               <ListItem >
-                 <CompactPicker onChange={this.handleTextColorChange} color={this.state.pallete.primary.contrastText}/>
+                 <ChromePicker onChange={this.handleDarkColorChange} color={this.state.pallete.dark}/>
+              </ListItem>
+              <Divider></Divider>
+              <ListItem >
+                  <ListItemText primary="Text/Icons" style={{ color: this.state.pallete.contrastText }} />
+              </ListItem>
+              <ListItem >
+                 <ChromePicker onChange={this.handleTextColorChange} color={this.state.pallete.contrastText}/>
+              </ListItem>
+              <Divider></Divider>
+              <ListItem >
+                  <ListItemText primary="Fonts" style={{ color: this.state.pallete.contrastText }} />
+              </ListItem>
+              <Divider></Divider>
+              <ListItem >
+                  <ListItemText primary="Logo" style={{ color: this.state.pallete.contrastText }} />
+              </ListItem>
+              <ListItem >
+                <FontPicker
+                      apiKey="AIzaSyA_UvCyYSVUs29fC2_8ZEjLNc1sIFwB4Dk"
+                      families={families}
+                      activeFontFamily={this.state.fonts.logo}
+                      onChange={this.handleLogoFontChange} />
+              </ListItem>
+              <Divider></Divider>
+              <ListItem >
+                  <ListItemText primary="Title" style={{ color: this.state.pallete.contrastText }} />
+              </ListItem>
+              <ListItem >
+                <FontPicker
+                        apiKey="AIzaSyA_UvCyYSVUs29fC2_8ZEjLNc1sIFwB4Dk"
+                        families={families}
+                        activeFontFamily={this.state.fonts.title}
+                        onChange={this.handleTitleFontChange} />
+              </ListItem>
+              <Divider></Divider>
+              <ListItem >
+                  <ListItemText primary="Section" style={{ color: this.state.pallete.contrastText }} />
+              </ListItem>
+              <ListItem >
+                <FontPicker
+                        apiKey="AIzaSyA_UvCyYSVUs29fC2_8ZEjLNc1sIFwB4Dk"
+                        families={families}
+                        activeFontFamily={this.state.fonts.section}
+                        onChange={this.handleSectionFontChange} />
+              </ListItem>
+              <Divider></Divider>
+              <ListItem >
+                  <ListItemText primary="Paragraph" style={{ color: this.state.pallete.contrastText }} />
+              </ListItem>
+              <ListItem >
+                <FontPicker
+                    apiKey="AIzaSyA_UvCyYSVUs29fC2_8ZEjLNc1sIFwB4Dk"
+                    families={families}
+                    activeFontFamily={this.state.fonts.paragraph}
+                    onChange={this.handleParagraphFontChange} />
               </ListItem>
           </List>
         </div>
@@ -235,49 +336,55 @@ class App extends React.Component {
       return (
         <>
           <div style={{flexGrow: 1}}>
-            <AppBar position="static" style={{ background: this.state.pallete.primary.main}}>
+            <AppBar position="static" style={{ background: this.state.pallete.main}} elevation={0}>
               <Toolbar variant="dense">
 
                 
-                    <Button onClick={this.toggleLeftDrawer(true)} edge="start" style={{height: 50}}><MenuIcon style={{ color: this.state.pallete.primary.contrastText }}/></Button>
+                    <Button onClick={this.toggleLeftDrawer(true)} edge="start" style={{height: 50}}><MenuIcon style={{ color: this.state.pallete.contrastText }}/></Button>
                     <SwipeableDrawer
                       
                       anchor="left"
                       open={this.state.drawers.left}
                       onClose={this.toggleLeftDrawer(false)}
                       onOpen={this.toggleLeftDrawer(true)}
+                      BackdropProps={{ invisible: true }}
                     >
                       {leftList()}
                     </SwipeableDrawer>
 
-                <Button href="/ianbonafede/#/" style={{height: 50, fontFamily: 'Merienda One', color: this.state.pallete.primary.contrastText, margin: 0}}>Ian Bonafede</Button>
+                <Button href="/ianbonafede/#/" style={{height: 50, fontFamily: this.state.fonts.logo, color: this.state.pallete.contrastText, margin: 0}}>Ian Bonafede</Button>
                 <Typography style={{flexGrow: 1}}></Typography>
-                <Button href="/ianbonafede/#/bio" style={{height: 50}}><AccountCircleIcon style={{ color: this.state.pallete.primary.contrastText }}/></Button>
-                <Button href="/ianbonafede/#/projects" style={{height: 50}}><LibraryBooksIcon style={{ color: this.state.pallete.primary.contrastText }}/></Button>
-                <Button onClick={this.toggleRightDrawer(true)} style={{height: 50}} edge="end"><PaletteIcon style={{ color: this.state.pallete.primary.contrastText }}/></Button>
+                <Button href="/ianbonafede/#/bio" style={{height: 50}}><AccountCircleIcon style={{ color: this.state.pallete.contrastText }}/></Button>
+                <Button href="/ianbonafede/#/projects" style={{height: 50}}><LibraryBooksIcon style={{ color: this.state.pallete.contrastText }}/></Button>
+                <Button onClick={this.toggleRightDrawer(true)} style={{height: 50}} edge="end"><PaletteIcon style={{ color: this.state.pallete.contrastText }}/></Button>
                 <SwipeableDrawer
                       
                       anchor="right"
                       open={this.state.drawers.right}
                       onClose={this.toggleRightDrawer(false)}
                       onOpen={this.toggleRightDrawer(true)}
+                      BackdropProps={{ invisible: true }}
                     >
                       {rightList()}
                     </SwipeableDrawer>
               </Toolbar>
             </AppBar>
           </div>
-          <Container style={{backgroundColor: this.state.pallete.primary.main}} maxWidth="lg">
-              <HashRouter basename={`${process.env.PUBLIC_URL}`} >
-                <Switch>
-                
-                  <Route exact path="/" component={Home}/>
-                  <Route exact path="/bio" component={Bio}/>
-                  <Route exact path="/Projects" component={Projects}/>
-                  
-                </Switch>
-              </HashRouter>
-          </Container>
+          
+          <HashRouter basename={`${process.env.PUBLIC_URL}`} >
+            <Switch>
+            
+              <Route exact path="/" render={props => 
+                    (<Home {...props}  pallete={this.state.pallete} fonts={this.state.fonts}/>)}/>
+
+              <Route exact path="/bio" render={props => 
+                    (<Bio {...props}  pallete={this.state.pallete} fonts={this.state.fonts}/>)}/>
+
+              <Route exact path="/Projects" render={props => 
+                    (<Projects {...props}  pallete={this.state.pallete} fonts={this.state.fonts}/>)}/>
+              
+            </Switch>
+          </HashRouter>
         </>
       );
       
@@ -289,158 +396,3 @@ class App extends React.Component {
 
 
 export default App;
-
-/***********************************this is the code that renders app
-
-const MuiTheme = createMuiTheme({
-    light: '#A3A3A3',
-    main: '#828282',
-    dark: '#686868',
-    contrastText: '#fff',
-    
-});
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
-  title: {
-    flexGrow: 1,
-  },
-  toolbarButton: {
-    height: 50
-  },
-  list: {
-    width: 200,
-  },
-  fullList: {
-    width: 'auto',
-  },
-  paper: {
-    background: MuiTheme.main
-  }
-}));
-
-function App() {
-
-  const classes = useStyles();
-
-  
-  document.body.style = 'background: #686868;';
-
- 
-    const [state, setState] = React.useState({
-      top: false,
-      left: false,
-      bottom: false,
-      right: false,
-    });
-  
-    const toggleDrawer = (anchor, open) => (event) => {
-      if (event && event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-        return;
-      }
-  
-      setState({ ...state, [anchor]: open });
-    };
-  
-    const list = (anchor) => (
-      <div
-        className={clsx(classes.list, {
-          [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-        })}
-        role="presentation"
-        onClick={toggleDrawer(anchor, false)}
-        onKeyDown={toggleDrawer(anchor, false)}
-      >
-        <List style={{ background: MuiTheme.main }}>
-            <ListItem >
-              <ListItemText primary="Quick Links" style={{ color: MuiTheme.contrastText }}/>
-           </ListItem>
-            <Divider></Divider>
-            <ListItem button component="a" href="https://www.linkedin.com/in/ian-bonafede/">
-              <ListItemText primary="LinkedIn" style={{ color: MuiTheme.contrastText }} className={classes.title}/>
-              <FaLinkedinIn style={{ color: MuiTheme.contrastText }}/>
-            </ListItem>
-            <ListItem button component="a" href="https://www.facebook.com/ian.bonafede">
-              <ListItemText primary="Facebook" style={{ color: MuiTheme.contrastText }} />
-              <FaFacebookF style={{ color: MuiTheme.contrastText }}/>
-            </ListItem>
-            <ListItem button component="a" href="https://twitter.com/bonafede_ian">
-              <ListItemText primary="Twitter" style={{ color: MuiTheme.contrastText }}/>
-              <FaTwitter style={{ color: MuiTheme.contrastText }}/>
-            </ListItem>
-            <ListItem button component="a" href="https://www.youtube.com/channel/UCKibLpiwfT9Ju9PC0d9pQog?view_as=subscriber">
-              <ListItemText primary="Youtube" style={{ color: MuiTheme.contrastText }}/>
-              <FaYoutube style={{ color: MuiTheme.contrastText }}/>
-            </ListItem>
-            <ListItem button component="a" href="https://www.instagram.com/ianbonafede/">
-              <ListItemText primary="Instagram" style={{ color: MuiTheme.contrastText }}/>
-              <FaInstagram style={{ color: MuiTheme.contrastText }}/>
-            </ListItem>
-            <ListItem button component="a" href="https://discord.gg/H4XhXqw">
-              <ListItemText primary="Discord" style={{ color: MuiTheme.contrastText }}/>
-              <FaDiscord style={{ color: MuiTheme.contrastText }}/>
-            </ListItem>
-            <ListItem button component="a" href="https://github.com/IanBonafede">
-              <ListItemText primary="GitHub" style={{ color: MuiTheme.contrastText }}/>
-              <FaGithub style={{ color: MuiTheme.contrastText }}/>
-            </ListItem>
-        </List>
-      </div>
-    );
-
-  return (
-      <>
-          <div className={classes.root}>
-            <AppBar position="static" style={{ background: MuiTheme.main, margin: 0, padding: 0}}>
-              <Toolbar variant="dense">
-              {['left'].map((anchor) => (
-                <React.Fragment key={anchor}>
-                  <Button onClick={toggleDrawer(anchor, true)} edge="start" className={classes.toolbarButton}><MenuIcon style={{ color: MuiTheme.contrastText }}/></Button>
-                  <SwipeableDrawer
-                    classes={{ paper: classes.paper }}
-                    anchor={anchor}
-                    open={state[anchor]}
-                    onClose={toggleDrawer(anchor, false)}
-                    onOpen={toggleDrawer(anchor, true)}
-                  >
-                    {list(anchor)}
-                  </SwipeableDrawer>
-                </React.Fragment>
-              ))}
-
-                
-                
-                <Button href="/ianbonafede/#/" className={classes.toolbarButton} style={{fontFamily: 'Merienda One', color: MuiTheme.contrastText, margin: 0}}>Ian Bonafede</Button>
-                <Typography className={classes.title}></Typography>
-                <Button href="/ianbonafede/#/bio" className={classes.toolbarButton}><AccountCircleIcon style={{ color: MuiTheme.contrastText }}/></Button>
-                <Button href="/ianbonafede/#/projects" className={classes.toolbarButton}><LibraryBooksIcon style={{ color: MuiTheme.contrastText }}/></Button>
-                <Button className={classes.toolbarButton} edge="end"><PaletteIcon style={{ color: MuiTheme.contrastText }}/></Button>
-              </Toolbar>
-            </AppBar>
-          </div>
-          <Container style={{backgroundColor: MuiTheme.main}} maxWidth="lg">
-              <HashRouter basename={`${process.env.PUBLIC_URL}`} >
-                <Switch>
-
-                
-                  <Route exact path="/" component={Home}/>
-                  <Route exact path="/bio" component={Bio}/>
-                  <Route exact path="/Projects" component={Projects}/>
-                  
-                </Switch>
-              </HashRouter>
-          </Container>
-          
-      </>
-
-  );
-  
-
-
-}
-
-
-
-export default App;*/
