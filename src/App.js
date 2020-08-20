@@ -20,6 +20,8 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Container} from '@material-ui/core'
 
 
 import {FaLinkedinIn,
@@ -44,10 +46,10 @@ class App extends React.Component {
           contrastText: '#ffffff'
         },
         fonts: {
-          logo: "Merienda One",
-          title: "Merienda One",
-          section: "Merienda One",
-          paragraph: "Merienda One"
+          logo: "Open Sans",
+          title: "Open Sans",
+          section: "Open Sans",
+          paragraph: "Open Sans"
         },
         drawers : {
           left : false,
@@ -336,55 +338,56 @@ class App extends React.Component {
       return (
         <>
           <div style={{flexGrow: 1}}>
-            <AppBar position="static" style={{ background: this.state.pallete.main}} elevation={0}>
-              <Toolbar variant="dense">
-
+            <AppBar position="static" style={{ background: this.state.pallete.main, margin:0, padding:0}} elevation={0}>
+              <Container  maxWidth="xl">
+                <Toolbar variant="dense" style={{margin:0, padding:0}}>
                 
-                    <Button onClick={this.toggleLeftDrawer(true)} edge="start" style={{height: 50}}><MenuIcon style={{ color: this.state.pallete.contrastText }}/></Button>
-                    <SwipeableDrawer
-                      
-                      anchor="left"
-                      open={this.state.drawers.left}
-                      onClose={this.toggleLeftDrawer(false)}
-                      onOpen={this.toggleLeftDrawer(true)}
-                      BackdropProps={{ invisible: true }}
-                    >
-                      {leftList()}
-                    </SwipeableDrawer>
+                  <Button onClick={this.toggleLeftDrawer(true)} edge="start" style={{height: 50}}><MenuIcon style={{ color: this.state.pallete.contrastText }}/></Button>
+                  <SwipeableDrawer
+                    
+                    anchor="left"
+                    open={this.state.drawers.left}
+                    onClose={this.toggleLeftDrawer(false)}
+                    onOpen={this.toggleLeftDrawer(true)}
+                    BackdropProps={{ invisible: true }}
+                    >{leftList()}
+                  </SwipeableDrawer>
 
-                <Button href="/ianbonafede/#/" style={{height: 50, fontFamily: this.state.fonts.logo, color: this.state.pallete.contrastText, margin: 0}}>Ian Bonafede</Button>
-                <Typography style={{flexGrow: 1}}></Typography>
-                <Button href="/ianbonafede/#/bio" style={{height: 50}}><AccountCircleIcon style={{ color: this.state.pallete.contrastText }}/></Button>
-                <Button href="/ianbonafede/#/projects" style={{height: 50}}><LibraryBooksIcon style={{ color: this.state.pallete.contrastText }}/></Button>
-                <Button onClick={this.toggleRightDrawer(true)} style={{height: 50}} edge="end"><PaletteIcon style={{ color: this.state.pallete.contrastText }}/></Button>
-                <SwipeableDrawer
-                      
-                      anchor="right"
-                      open={this.state.drawers.right}
-                      onClose={this.toggleRightDrawer(false)}
-                      onOpen={this.toggleRightDrawer(true)}
-                      BackdropProps={{ invisible: true }}
-                    >
-                      {rightList()}
-                    </SwipeableDrawer>
-              </Toolbar>
+                  <Button href="/ianbonafede/#/" style={{height: 50, fontFamily: this.state.fonts.logo, color: this.state.pallete.contrastText, margin: 0}}>Ian Bonafede</Button>
+                  <Typography style={{flexGrow: 1}}></Typography>
+                  <Button href="/ianbonafede/#/bio" style={{height: 50, color: this.state.pallete.contrastText,}}><AccountCircleIcon style={{ color: this.state.pallete.contrastText }}/></Button>
+                  <Button href="/ianbonafede/#/projects" style={{height: 50, color: this.state.pallete.contrastText,}} ><LibraryBooksIcon style={{ color: this.state.pallete.contrastText }}/></Button>
+                  <Button onClick={this.toggleRightDrawer(true)} style={{height: 50, color: this.state.pallete.contrastText,}} ><PaletteIcon style={{ color: this.state.pallete.contrastText }}/></Button>
+                  <SwipeableDrawer
+                    anchor="right"
+                    open={this.state.drawers.right}
+                    onClose={this.toggleRightDrawer(false)}
+                    onOpen={this.toggleRightDrawer(true)}
+                    BackdropProps={{ invisible: true }}
+                    >{rightList()}
+                  </SwipeableDrawer>
+                
+                </Toolbar>
+              </Container>
             </AppBar>
           </div>
-          
-          <HashRouter basename={`${process.env.PUBLIC_URL}`} >
-            <Switch>
-            
-              <Route exact path="/" render={props => 
-                    (<Home {...props}  pallete={this.state.pallete} fonts={this.state.fonts}/>)}/>
-
-              <Route exact path="/bio" render={props => 
-                    (<Bio {...props}  pallete={this.state.pallete} fonts={this.state.fonts}/>)}/>
-
-              <Route exact path="/Projects" render={props => 
-                    (<Projects {...props}  pallete={this.state.pallete} fonts={this.state.fonts}/>)}/>
+          <Container maxWidth="xl">
+            <HashRouter basename={`${process.env.PUBLIC_URL}`} >
+              <Switch>
               
-            </Switch>
-          </HashRouter>
+                <Route exact path="/" render={props => 
+                      (<Home {...props}  pallete={this.state.pallete} fonts={this.state.fonts}/>)}/>
+
+                <Route exact path="/bio" render={props => 
+                      (<Bio {...props}  pallete={this.state.pallete} fonts={this.state.fonts}/>)}/>
+
+                <Route exact path="/Projects" render={props => 
+                      (<Projects {...props}  pallete={this.state.pallete} fonts={this.state.fonts}/>)}/>
+                
+              </Switch>
+            </HashRouter>
+          </Container>
+          
         </>
       );
       

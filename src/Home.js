@@ -5,15 +5,15 @@ import Carousel from 'react-bootstrap/Carousel'
 
 export const Home = ({pallete, fonts}) => { 
     return (
-        <Container style={{backgroundColor: pallete.main}} maxWidth="lg">
+        <>
             <h1 style={{fontFamily: fonts.title, color: pallete.contrastText}}>
                 Featured
             </h1>
             <Carousel>
-            <Carousel.Item>
+            <Carousel.Item style={{'height':"400px"}}>
                 <img
                 className="d-block w-100"
-                src="holder.js/800x400?text=First slide&bg=373940"
+                src={require("./images/carousel.png")}
                 alt="First slide"
                 />
                 <Carousel.Caption>
@@ -21,10 +21,10 @@ export const Home = ({pallete, fonts}) => {
                 <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
                 </Carousel.Caption>
             </Carousel.Item>
-            <Carousel.Item>
+            <Carousel.Item style={{'height':"400px"}}>
                 <img
                 className="d-block w-100"
-                src="holder.js/800x400?text=Second slide&bg=282c34"
+                src={require("./images/carousel.png")}
                 alt="Third slide"
                 />
 
@@ -33,10 +33,10 @@ export const Home = ({pallete, fonts}) => {
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
                 </Carousel.Caption>
             </Carousel.Item>
-            <Carousel.Item>
+            <Carousel.Item style={{'height':"400px"}}>
                 <img
                 className="d-block w-100"
-                src="holder.js/800x400?text=Third slide&bg=20232a"
+                src={require("./images/carousel.png")}
                 alt="Third slide"
                 />
 
@@ -46,7 +46,7 @@ export const Home = ({pallete, fonts}) => {
                 </Carousel.Caption>
             </Carousel.Item>
             </Carousel>
-        </Container>
+        </>
     )
 };
 
