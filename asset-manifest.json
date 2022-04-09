@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/ianbonafede/static/css/main.e0000ae1.css",
-    "main.js": "/ianbonafede/static/js/main.67e763ca.js",
+    "main.js": "/ianbonafede/static/js/main.54a5ec46.js",
     "static/media/banner.png": "/ianbonafede/static/media/banner.3845420b7650d36749ae.png",
     "static/media/carousel.png": "/ianbonafede/static/media/carousel.42a6ff02483d2f393b50.png",
     "index.html": "/ianbonafede/index.html",
     "main.e0000ae1.css.map": "/ianbonafede/static/css/main.e0000ae1.css.map",
-    "main.67e763ca.js.map": "/ianbonafede/static/js/main.67e763ca.js.map"
+    "main.54a5ec46.js.map": "/ianbonafede/static/js/main.54a5ec46.js.map"
   },
   "entrypoints": [
     "static/css/main.e0000ae1.css",
-    "static/js/main.67e763ca.js"
+    "static/js/main.54a5ec46.js"
   ]
 }
